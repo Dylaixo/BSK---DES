@@ -4,23 +4,30 @@ def string_to_bin_single(input: str):
 
 
 def binary_to_string_single(bits):
+    if bits == '00000000':
+        return
     ascii_code = int(bits, 2)
     return chr(ascii_code)
 
 
 def sting_to_bin(input: str):
     output = ''
-    assert len(input)==8, "wiadomość powinna posiadać 8 znaków"
-    for char in input:
-        output = output + string_to_bin_single(char)
+    for i in range(0, 8):
+        try:
+            output = output + string_to_bin_single(input[i])
+        except (TypeError, IndexError):
+            output = output + '00000000'
     return output
 
 
 def binary_to_string(input):
-    bits_list = [input[i:i+8] for i in range(0, len(input), 8)]
+    bits_list = [input[i:i + 8] for i in range(0, len(input), 8)]
     output = ''
     for bits in bits_list:
-        output = output + binary_to_string_single(bits)
+        try:
+            output = output + binary_to_string_single(bits)
+        except TypeError:
+            pass
     return output
 
 
@@ -31,8 +38,9 @@ def xor_single(input1, input2):
 
 
 def xor(input1, input2):
-    assert len(input1) == len(input2), "Oba bloku muszą mieć taką samą długość"
+    assert len(input1) == len(input2), "Oba bloki muszą mieć taką samą długość"
     output = ''
     for i1, i2 in zip(input1, input2):
         output = output + xor_single(i1, i2)
     return output
+
