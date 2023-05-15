@@ -13,7 +13,7 @@ def test(msg, key):
     print(f"message used: {msg}")
     print(f"encypted file {number_systems.binary_to_string(t1)}")
     print(f"decrypted file {number_systems.binary_to_string(t2)}")
-    assert number_systems.binary_to_string(t2) == number_systems.binary_to_string(t1), "Błąd"
+    assert number_systems.binary_to_string(t2) == msg, "Błąd"
     print("---------------")
 
 
